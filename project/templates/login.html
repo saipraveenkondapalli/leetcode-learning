@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{block title}Login{/block}
+
+
+    {% block body %}
+    <div>
+        <section class="position-relative py-4 py-xl-5">
+            <div class="container position-relative">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+                        <div class="card mb-5" style="border-top-style: none;border-right-style: none;border-bottom-style: none;border-left-style: none;">
+                            <div class="card-body p-sm-5" style="border-top-style: none;border-right-style: none;border-bottom-style: none;border-left-style: none;color: var(--bs-gray-500);">
+                                <div style="text-align: center;"><img style="margin-bottom: 10px;" src="https://assets.leetcode.com/static_assets/public/webpack_bundles/images/logo.c36eaf5e6.svg"></div>
+                                <form id="my-form" action="/login" method="post">
+                                    <div class="mb-3"></div>
+                                    <div class="mb-3"><input class="form-control" type="email" id="email" name="email" placeholder="Email"></div>
+                                    <div class="mb-3"></div>
+                                    <input class="form-control" id = "password" type="password" placeholder="Password" name="password">
+                                    <div class="form-text confirm-message" id ="msg"></div>
+                                    <div id = "button1">
+                                        <button class="btn btn-primary d-block w-100" id = "button" disabled type="submit" onclick = "replace()" style="margin-top: 20px;">
+                                            <img width="25px" id = "myimg" src="https://gifimage.net/wp-content/uploads/2017/09/blue-loading-gif-transparent-6.gif" hidden/>
+                                            Login
+                                        </button>
+
+                                    </div>
+
+                                    <div style="text-align: center;margin-top: 40px;">
+                                        <h5 style="font-size: 15px;color: var(--bs-gray);">&nbsp;Or you can login with</h5><a href="/google"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-12 0 512 512" width="1em" height="1em" fill="currentColor" style="font-size: 24px;text-align: center;color: var(--bs-black);">
+                                                <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                                                <path d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path>
+                                            </svg></a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="static/assets/bootstrap/js/custom.js"></script>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        function replace(){
+            document.getElementById("button").innerHTML = '<img width="25px" src="https://gifimage.net/wp-content/uploads/2017/09/blue-loading-gif-transparent-6.gif" />';
+
+        }
+    </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+<script>
+$('#email, #password').on('keyup', function() {
+    document.getElementById('msg').innerHTML = "";
+    let email = $('#email').val();
+    let password = $('#password').val();
+    if (email ==""){
+        $('#button').attr('disabled', true);
+    }
+    else if (password ==""){
+        $('#button').attr('disabled', true);
+    }
+    else{
+        $('#button').attr('disabled', false);
+    }
+});
+</script>
+<script>
+    function submitForm() {
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', '/login');
+  xhr.onload = function(response) {
+    if (xhr.status === 200) {
+      window.location = '/dashboard';
+
+    }
+    else {
+      document.getElementById('msg').innerHTML = xhr.responseText;
+      document.getElementById("button").innerHTML = "Login";
+
+    }
+  };
+  var formData = new FormData(document.getElementById('my-form'));
+  xhr.send(formData);
+}
+
+document.getElementById('my-form').addEventListener('submit', function(event) {
+  event.preventDefault();
+  submitForm();
+});
+</script>
+<style>
+       .form-text{
+           color: red;
+           text-align: center;
+       }
+    </style>
+{% endblock %}
