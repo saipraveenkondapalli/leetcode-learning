@@ -52,8 +52,9 @@ login_manager.login_view = 'login'
 
 # ------------------------------------------- MAIL CONFIGURATION ---------------------------------------------------
 
-app.config['MAIL_SERVER'] = os.environ.get('MAIL_SERVER')
-app.config['MAIL_PORT'] = os.environ.get('MAIL_PORT')
+app.config['MAIL_SERVER'] = os.environ.get('MAIL_SERVER') # 'smtp.googlemail.com'
+app.config['MAIL_PORT'] = os.environ.get('MAIL_PORT') #
+
 app.config['MAIL_USERNAME'] = os.environ.get('FLASK_MAIL_USERNAME')
 app.config['MAIL_PASSWORD'] = os.environ.get("FLASK_MAIL_PASSWORD")
 app.config['MAIL_USE_SSL'] = False
