@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %} Register {% endblock %}
+{% block title %} Reset Password {% endblock %}
 {% block body %}
     <div>
         <section class="position-relative py-4 py-xl-5">
@@ -10,14 +10,9 @@
                         <div class="card mb-5" style="border-top-style: none;border-right-style: none;border-bottom-style: none;border-left-style: none;">
                             <div class="card-body p-sm-5" style="border-top-style: none;border-right-style: none;border-bottom-style: none;border-left-style: none;color: var(--bs-gray-500);">
                                 <div style="text-align: center;"><img style="margin-bottom: 10px;" src="https://assets.leetcode.com/static_assets/public/webpack_bundles/images/logo.c36eaf5e6.svg" /></div>
-                                <h1 style="font-family: Raleway, sans-serif;font-size: 20px;color: var(--bs-gray-600);">Create an account</h1>
-                                <form id ="my-form" action="/register" method="post">
-                                    <div class="mb-3">
-                                        <input class = "form-control" type="text" name="name" placeholder="Name" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <input id="email-2" class="form-control" type="email" name="email" placeholder="Email" required/>
-                                    </div>
+                                <h1 style="font-family: Raleway, sans-serif;font-size: 20px;color: var(--bs-gray-600);">Reset Password</h1>
+                                <form id ="my-form"  method="post">
+
                                     <div class="mb-3">
                                         <input class="form-control" id ="password" type="password" placeholder="Password" name="password" required minlength="8" />
                                         <input class="form-control" id= "confirmpassword" type="password" placeholder="Confirm Password" name="cpassword" style="margin-top: 20px;" required minlength="8" />
@@ -25,7 +20,7 @@
                                     <div class="form-text confirm-message"></div>
                                     <div class = "form-text-2" id = 'msg-2'></div>
                                     <div >
-                                        <button id = "button"  class="btn btn-primary d-block w-100" type="submit" onclick="replace()" disabled style="margin-top: 20px;">Create account</button>
+                                        <button id = "button"  class="btn btn-primary d-block w-100" type="submit" onclick="replace()" disabled style="margin-top: 20px;">change Password</button>
 
                                     </div>
 
@@ -79,6 +74,7 @@
 
     });
 </script>
+
 <style>
         .success-message{
             color:green
@@ -91,31 +87,5 @@
         }
     </style>
 
-<script>
-    function submitForm() {
-  var xhr = new XMLHttpRequest();
-  xhr.open('POST', '/register');
-  xhr.onload = function(response) {
-    if (xhr.status === 200) {
-      window.location = '/dashboard';
 
-    }
-    else {
-        //alert(xhr.response);
-      document.getElementById('msg-2').innerHTML = xhr.response;
-      document.getElementById("button").innerText = 'Create account';
-
-
-    }
-  };
-  var formData = new FormData(document.getElementById('my-form'));
-  xhr.send(formData);
-}
-
-document.getElementById('my-form').addEventListener('submit', function(event) {
-  event.preventDefault();
-  submitForm();
-});
-
-</script>
 {% endblock %}

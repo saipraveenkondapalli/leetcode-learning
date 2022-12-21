@@ -1,96 +1,118 @@
 import time
-
-from flask import request, render_template, redirect, url_for, make_response
-from project.models import User
-from project import app, oauth
+from flask import request, render_template, redirect, url_for, make_response, jsonify
+from project.models import User, Problems
+from project import app, oauth, bcrypt
 from mongoengine.errors import NotUniqueError as MongoNotUniqueError
 from flask_login import login_required, login_user, logout_user, current_user
 import boto3
 import random
+from bson.son import SON
 
 
 @app.route('/')
 def hello_world():  # put application's code here
-    return 'Hello World! <a href ="/login"> login </a> <a href = "/register"> register </a>'
+    return render_template("index.html")
 
 
-@app.route('/login', methods= ['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-
-        email = request.form['email']
-        password = request.form['password']
-        user = User.objects(email=email).first()
-        if user:
-            if user.social:
-                return make_response("You already have an account. Please login with your social account", 401)
-        if user is not None and user.check_password(password):
-            login_user(user)
-            return make_response("Login Successful", 200)
-        else:
-            return make_response("Wrong Email id or Password", 401)
-
-    return render_template('login.html')
 
 
-@app.route('/logout')
-@login_required
-def logout():
-    logout_user()
-    return redirect('/')
 
-
-# ----------------------------------------------------Google Login--------------------------------------------------------
-@app.route('/google', methods = ["POST", "GET"])
-def google():
-    google = oauth.create_client('google')
-    redirect_url = url_for('authorize', _external= True)
-    return google.authorize_redirect(redirect_url)
-
-
-@app.route('/authorize')
-def authorize():
-    google = oauth.create_client('google')
-    token = google.authorize_access_token()
-    resp = google.get('userinfo')
-    user_info = resp.json()
-    email = user_info['email']
-    user = User.objects(email=email).first()
-    if not user:
-        user = User()
-        user.email = email
-        user.name = user_info['name']
-        user.social = True
-        user.social_id = 'google'
-        user.save()
-    login_user(user)
-    return redirect('/dashboard')
-
-# ------------------------------------------------------- END OF GOOGLE LOGIN ----------------------------------------------------------------------------------
-
-
+"""
 
 @app.route('/dashboard')
 @login_required
 def dashboard():
     return render_template('dashboard.html', user=current_user.name)
+"""
+
+"""
+@app.route('/problems')
+def problems():
+    return render_template('table.html', problems=Problems.objects.limit(50))
+"""
+
+# -------------------------------------------------------------------------Companies---------------------------------------------------------------------------------------------
+@app.route('/chart_data')
+def chart_data():
+    # Load the data from your database or other source
+
+    pipeline = [
+        {"$unwind": "$company"},  # unpack the "company" array field
+        {"$group": {"_id": "$company.name", "count": {"$sum": 1}}},
+        # group by company name and calculate the count of problems
+        {"$sort": SON([("count", -1)])},  # sort by count in descending order
+        {"$limit": 10}  # limit the results to the top 10
+    ]
+
+    result = Problems.objects.aggregate(pipeline)
+    company_name = []
+    company_count = []
+    for doc in result:
+        company_name.append(doc['_id'])
+        company_count.append(doc['count'])
+    pipeline = [
+        {"$group": {
+            "_id": None,
+            "easy_count": {"$sum": {"$cond": [{"$eq": ["$level", "Easy"]}, 1, 0]}},
+            "medium_count": {"$sum": {"$cond": [{"$eq": ["$level", "Medium"]}, 1, 0]}},
+            "hard_count": {"$sum": {"$cond": [{"$eq": ["$level", "Hard"]}, 1, 0]}}
+        }}
+    ]
+
+    counts = Problems.objects.aggregate(pipeline)
+    for count in counts:
+        easy = count['easy_count']
+        medium = count['medium_count']
+        hard = count['hard_count']
+        total = easy + medium + hard
+
+
+    return jsonify({'company_name': company_name, 'company_count': company_count, "easy": easy, "medium": medium, "hard": hard, "total": total})
+
+
+@app.route('/companies')
+
+def companies():
+    pipeline = [
+        {"$unwind": "$company"},  # unpack the "company" array field
+        {"$group": {"_id": "$company.name", "count": {"$sum": 1}}},
+        # group by company name and calculate the count of problems
+        {"$sort": {'_id':1}},  # sort by count in descending order
+    ]
+
+    result = Problems.objects.aggregate(pipeline)
+
+    return render_template('companies.html', company=result)
+
+
+@app.route('/company/<company_name>')
+@login_required
+def company(company_name):
+    # Define the pipeline stages
+    pipeline = [
+        # Find all documents where the 'company.name' field is equal to 'company_name'
+        {'$match': {'company.name': company_name}},
+        # Unwind the 'company' array to create a separate document for each element in the array
+        {'$unwind': '$company'},
+        # Match the 'company.name' field again to filter out any documents that do not have a 'company.name' field equal to 'company_name'
+        {'$match': {'company.name': company_name}},
+        {'$sort': {'company.freq': -1}},
+        # Project the 'name', 'link', and 'company' fields into the output documents
+        {'$project': {'name': 1, 'link': 1, 'level': 1, 'company': 1}}
+    ]
+
+
+    # Run the aggregation pipeline
+    result = Problems.objects.aggregate(pipeline)
+
+    return render_template('company list.html',name = company_name,  problems=result)
 
 
 
-@app.route('/register', methods = ['POST', 'GET'])
-def register():
-    if request.method == "POST":
-        user = User()
-        user.name = request.form['name']
-        user.email = request.form['email']
-        user.password = request.form['password']
-        user.confirm_password = request.form['cpassword']
-        user.social = False
-        user.save()
-        login_user(user)
-        return redirect('/dashboard')
+# ----------------------------------------------------------- END OF COMPANY LIST ----------------------------------------------------------------------------------
 
-    return render_template('register.html')
+
+
 
 
 

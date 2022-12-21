@@ -3,8 +3,8 @@
 {block title}Login{/block}
 
 
-    {% block body %}
-    <div>
+{% block body %}
+<div>
         <section class="position-relative py-4 py-xl-5">
             <div class="container position-relative">
                 <div class="row d-flex justify-content-center">
@@ -12,23 +12,22 @@
                         <div class="card mb-5" style="border-top-style: none;border-right-style: none;border-bottom-style: none;border-left-style: none;">
                             <div class="card-body p-sm-5" style="border-top-style: none;border-right-style: none;border-bottom-style: none;border-left-style: none;color: var(--bs-gray-500);">
                                 <div style="text-align: center;"><img style="margin-bottom: 10px;" src="https://assets.leetcode.com/static_assets/public/webpack_bundles/images/logo.c36eaf5e6.svg"></div>
-                                <form id="my-form" action="/login" method="post">
-                                    <div class="mb-3"></div>
+                                <h1 class="h3 mb-4" style="text-align: center;">Forget Password</h1>
+                                <form id="my-form"  method="post">
                                     <div class="mb-3"><input class="form-control" type="email" id="email" name="email" placeholder="Email"></div>
-                                    <div class="mb-3"></div>
-                                    <input class="form-control" id = "password" type="password" placeholder="Password" name="password">
+
+
                                     <div class="form-text confirm-message" id ="msg"></div>
+                                    <div class = "form-text danger-msg" id = "error" >{{ msg  }}</div>
+
                                     <div id = "button1">
                                         <button class="btn btn-primary d-block w-100" id = "button" disabled type="submit" onclick = "replace()" style="margin-top: 20px;">
                                             <img width="25px" id = "myimg" src="https://gifimage.net/wp-content/uploads/2017/09/blue-loading-gif-transparent-6.gif" hidden/>
-                                            Login
+                                            Send
                                         </button>
 
                                     </div>
-                                    <div class="row" style = "margin-top: 10px;">
-                                            <div class="col" style="text-align: left;"><a href="/forget" style="font-family: Raleway, sans-serif;">Forget Password</a></div>
-                                            <div class="col" style="text-align: right;"><a href="/register" style="font-family: Raleway, sans-serif;">Register</a></div>
-                                    </div>
+
 
                                     <div style="text-align: center;margin-top: 40px;">
                                         <h5 style="font-size: 15px;color: var(--bs-gray);">&nbsp;Or you can login with</h5><a href="/google"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-12 0 512 512" width="1em" height="1em" fill="currentColor" style="font-size: 24px;text-align: center;color: var(--bs-black);">
@@ -47,54 +46,38 @@
 
     <script src="static/assets/bootstrap/js/custom.js"></script>
 {% endblock %}
-
 {% block scripts %}
-    <script>
-        function replace(){
-            document.getElementById("button").innerHTML = '<img width="25px" src="https://gifimage.net/wp-content/uploads/2017/09/blue-loading-gif-transparent-6.gif" />';
-
-        }
-    </script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-
 <script>
-$('#email, #password').on('keyup', function() {
-    document.getElementById('msg').innerHTML = "";
-    let email = $('#email').val();
-    let password = $('#password').val();
-    if (email ==""){
-        $('#button').attr('disabled', true);
-    }
-    else if (password ==""){
-        $('#button').attr('disabled', true);
-    }
-    else{
-        $('#button').attr('disabled', false);
-    }
-});
+    $(document).ready(function(){
+        $("#email").keyup(function(){
+            $("#error").html("");
+            $("#msg").html("");
+            var email = $("#email").val();
+            if(email != ""){
+                $("#button").removeAttr("disabled");
+            }
+            else{
+                $("#button").attr("disabled", "disabled");
+            }
+        });
+    });
 </script>
-<script>
-    function submitForm() {
+    <script>
+function submitForm() {
   var xhr = new XMLHttpRequest();
-  var next = new URL(window.location.href).searchParams.get("next");
+    xhr.open("POST", "/forget", true);
 
- if (next) {
-  // if "next" parameter exists, send request to "/login?next=<value of next>"
-  xhr.open('POST', '/login?next=' + next);
-} else {
-  // otherwise, send request to "/login"
-  xhr.open('POST', '/login');
-}
+
   xhr.onload = function(response) {
     if (xhr.status === 200) {
-      window.location= xhr.responseText;
-
+      document.getElementById("msg").innerHTML = "check your email for reset link";
+      document.getElementById("button").innerHTML = "Send";
     }
     else {
-      document.getElementById('msg').innerHTML = xhr.responseText;
-      document.getElementById("button").innerHTML = "Login";
+      document.getElementById('error').innerHTML = xhr.responseText;
+      document.getElementById("button").innerHTML = "Send";
 
     }
   };
@@ -106,11 +89,18 @@ document.getElementById('my-form').addEventListener('submit', function(event) {
   event.preventDefault();
   submitForm();
 });
-</script>
-<style>
-       .form-text{
-           color: red;
-           text-align: center;
-       }
+    </script>
+    <style>
+        .confirm-message{
+            text-align: center;
+            color: green;
+        }
+        .danger-msg{
+            text-align: center;
+            color: red;
+        }
+    </style>
+    <style>
+
     </style>
 {% endblock %}
