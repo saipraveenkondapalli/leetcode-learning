@@ -113,7 +113,6 @@ def reset_password(token):
     return render_template('reset.html', username=user.name)
 
 
-
 @app.route('/logout')
 @login_required
 def logout():
