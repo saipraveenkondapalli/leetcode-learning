@@ -6,6 +6,7 @@ from mongoengine.errors import NotUniqueError as MongoNotUniqueError
 from project.mail import forget_password_mail_async as forget_send_mail
 from itsdangerous import URLSafeTimedSerializer as Serializer, SignatureExpired, BadSignature
 
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     next = request.args.get('next')
@@ -44,7 +45,6 @@ def register():
         except MongoNotUniqueError:
             return make_response("Email already exists", 401)
     return render_template('register.html')
-
 
 
 # ----------------------------------------------------------- GOOGLE LOGIN --------------------------------------------------------
@@ -99,7 +99,7 @@ def reset_password(token):
         user = User.objects(email=email).first()
         if request.method == 'POST':
                 password_hash = bcrypt.generate_password_hash(request.form['password']).decode('utf-8')
-                user.password_hash = password_hash
+                user.password = password_hash
                 user.save()
                 return redirect('/login')
 
