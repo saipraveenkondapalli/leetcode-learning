@@ -14,6 +14,10 @@ def hello_world():  # put application's code here
     return render_template("index.html")
 
 
+@app.route('/privacy')
+def privacy():
+    return render_template("privacy.html")
+
 
 
 
@@ -88,7 +92,6 @@ def companies():
 
 
 @app.route('/company/<company_name>')
-@login_required
 def company(company_name):
     # Define the pipeline stages
     if company_name.__contains__('%20'):
@@ -109,6 +112,7 @@ def company(company_name):
 
     # Run the aggregation pipeline
     result = Problems.objects.aggregate(pipeline)
+
 
     return render_template('company list.html',name = company_name,  problems=result)
 

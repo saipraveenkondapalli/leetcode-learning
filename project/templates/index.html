@@ -1,94 +1,83 @@
 {% extends "base.html"  %}
 
 {% block title %} Home Page {% endblock %}
+{% block meta %}
+    <meta name="description" content="Home Page">
+    <meta name = "website" content="Leetcodeproblems.tech">
+<meta name="description" content="Welcome to our website! Here, you will find a collection of over 1000 coding problems related to companies sourced from open source GitHub repositories. These problems are carefully selected to provide a challenging and rewarding learning experience for developers at all levels. Explore our collection and improve your skills with the latest technologies and best practices. Happy coding!">
+<meta name="keywords" content="company wise coding questions, leetcode comapany wise coding questions, leetcode, coding problems, companies, open source, GitHub, developers, skills, technologies, apple, google, amazon, best practices"><meta name="description" content="{{ name }} previous coding questions">
+<meta name="description" content="leetcode coding questions">
+<meta name="description" content="Company wise coding questions">
+<meta name="description" content="coding questions">
+<meta name="description" content="exam coding questions">
+<meta name="description" content="drive coding questions">
+<meta name="description" content="interview coding questions">
+{% endblock %}
 
 {% block body %}
-<div class="container" style="margin-top: 50px;max-width: 600px;">
-<h1 style="font-family: Raleway, sans-serif;text-align: center;">Questions</h1>
-    <div style="text-align: center; height:200px;">
-<canvas id="myChart2"  style=" margin: 0 auto; margin-top: 20px;"></canvas>
-   </div>
+<section class="py-4 py-xl-5" style="height: 270px;">
+    <div class="container h-100">
+        <div class="text-white bg-primary border rounded border-0 p-4 py-5">
+            <h1 style="text-align: center;">Coding Problems</h1>
+            <div class="row h-100" style="text-align: center;">
+                <div class="col-md-10 col-xl-8 text-center d-flex d-sm-flex d-md-flex justify-content-center align-items-center mx-auto justify-content-md-start align-items-md-center justify-content-xl-center">
+                    <div>
+                        <h1 class="text-uppercase fw-bold text-white mb-3"></h1>
+                        <p class="mb-4" style="text-align: center;">
+                        Welcome to our website! Here, you will find a collection of over 1000 coding problems related to companies sourced from open source GitHub repositories. These problems are carefully selected to provide a challenging and rewarding learning experience for developers at all levels. Explore our collection and improve your skills with the latest technologies and best practices. Happy coding!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <div class="container py-4 py-xl-5" style="margin-top: 100px">
+    <div class="row mb-5">
+        <div class="col-md-8 col-xl-6 text-center mx-auto">
+            <h2 style="font-family: Raleway, sans-serif;font-size: 36px;">Questions</h2>
+        </div>
+    </div>
+    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
+        <div class="col">
+            <div class="card">
+                <div class="card-body p-4" style="text-align: center;background: transparent;border-style: none;border-color: transparent;"><svg class="bi bi-check2-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 45px;padding-right: 0px;padding-bottom: 0px;color: #007a3d;">
+                        <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"></path>
+                        <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"></path>
+                    </svg>
+                    <h4 class="card-title" style="margin: 14px;font-family: Raleway, sans-serif;">Easy</h4><span style="font-size: 40px;">340+</span>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body p-4" style="text-align: center;"><svg class="bi bi-check2-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 45px;padding-right: 0px;padding-bottom: 0px;color: #ffc01e;">
+                        <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"></path>
+                        <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"></path>
+                    </svg>
+                    <h4 class="card-title" style="margin: 14px;font-family: Raleway, sans-serif;text-align: center;">Medium</h4><span style="font-size: 40px;text-align: center;">500+</span>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body text-center p-4"><svg class="bi bi-check2-circle" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 45px;padding-right: 0px;padding-bottom: 0px;text-align: center;color: #ff375f;">
+                        <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"></path>
+                        <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"></path>
+                    </svg>
+                    <h4 class="card-title" style="margin: 14px;font-family: Raleway, sans-serif;text-align: center;">Hard</h4><span style="font-size: 40px;text-align: center;">100+</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-
-<div class="container" style="margin-top: 100px;max-width: 600px;">
-<h1 style="font-family: Raleway, sans-serif;text-align: center;">Company wise Questions</h1>
-    <div style="text-align: center; height:200px;">
-<canvas id="myChart1"  style=" margin: 0 auto; margin-top: 20px;"></canvas>
-   </div>
+    <div class="container">
+    <div class="card">
+        <div class="card-body text-center" style="margin-bottom: 17px;">
+            <h4 class="card-title" style="font-family: Raleway, sans-serif;font-size: 36px;">   Companies</h4><span style="font-size: 40px;">150+</span>
+        </div>
+    </div>
 </div>
-
 
 {% endblock %}
 
-{% block scripts %}
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
- <script>
-    $(document).ready(function() {
-      $.ajax({
-        type: "GET",
-        url: "{{ url_for('chart_data') }}",
-        success: function(response) {
-          var labels = response.company_name;
-          var data = response.company_count;
-          var easy = response.easy;
-          var medium = response.medium;
-          var hard = response.hard;
-
-
-          // Create the chart
-          var ctx = document.getElementById('myChart1').getContext('2d');
-          var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-              labels: labels,
-              datasets: [{
-                label: "Count",
-                data: data,
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 2,
-                borderRadius: 20,
-
-
-
-              }]
-            },
-            options: {
-              scales: {
-                yAxes: [{
-                  ticks: {
-                    beginAtZero: true
-                  }
-                }]
-              }
-            }
-          });
-          var ctx = document.getElementById('myChart2').getContext('2d');
-          var data = {
-          labels: ['Easy', 'Medium', 'Hard'],
-          datasets: [{
-            label: 'Problems Count',
-            data: [easy, medium, hard],
-            backgroundColor: ['rgb(12,225,73)', 'rgb(255, 205, 86)', '#FF6384FF']
-          }]
-        };
-
-        // Create the chart
-        var chart = new Chart(ctx, {
-          type: 'doughnut',
-          data: data,
-          options: {
-            cutoutPercentage: 50
-          }
-        });
-        }
-      });
-    });
-  </script>
-
-
-<script src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-
-{% endblock %}
