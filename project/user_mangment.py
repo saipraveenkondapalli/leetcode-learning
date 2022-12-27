@@ -30,6 +30,9 @@ def login():
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     if request.method == "POST":
+        user = User.objects(email=request.form['email']).first()
+        if user and user.social:
+            return make_response("You have already created with google sign in. Use login with google.", 401)
         user = User()
         user.name = request.form['name']
         user.email = request.form['email']
@@ -48,6 +51,8 @@ def register():
 
 
 # ----------------------------------------------------------- GOOGLE LOGIN --------------------------------------------------------
+
+
 @app.route('/google', methods=["POST", "GET"])
 def google():
     google = oauth.create_client('google')
@@ -102,7 +107,6 @@ def reset_password(token):
                 user.password = password_hash
                 user.save()
                 return redirect('/login')
-
 
     except SignatureExpired:   # if the token is expired
         return render_template("forget.html", msg = "The token is expired")

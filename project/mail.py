@@ -16,7 +16,7 @@ def forget_password_mail_async(email):
         "Content-Type": "application/json"
     }
     payload = json.dumps({
-        "email": "19a31b0444@pragati.ac.in",
+        "email": email,
         "link": url_for('reset_password', token=token, _external=True)
     })
 

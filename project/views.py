@@ -32,6 +32,8 @@ def problems():
 """
 
 # -------------------------------------------------------------------------Companies---------------------------------------------------------------------------------------------
+
+
 @app.route('/chart_data')
 def chart_data():
     # Load the data from your database or other source
@@ -89,6 +91,9 @@ def companies():
 @login_required
 def company(company_name):
     # Define the pipeline stages
+    if company_name.__contains__('%20'):
+        company_name = company_name.replace('%20', ' ')
+
     pipeline = [
         # Find all documents where the 'company.name' field is equal to 'company_name'
         {'$match': {'company.name': company_name}},
