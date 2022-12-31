@@ -2,13 +2,200 @@
 
 {% block title %} Companies {% endblock %}
 {% block meta %}
-<meta name="description" content="Leetcode Coding Questions">
-<meta name="description" content="Companies wise coding questions">
-<meta name = "keywords", content="APT Portfolio,Accenture,Activision,Adobe,Affirm,Airbnb,Akamai,Akuna Capital,Alation,Alibaba,AllinCall,Amazon,American Express,Apple,Arcesium,Arista Networks,Asana,Athenahealth,Atlassian,Baidu,Barclays,BlackRock,Bloomberg,Bolt,Booking,Box,ByteDance,C3 IoT,Canonical,Capital One,Cashfree,Cisco,Citadel,Citrix,Cohesity,Commvault,Coursera,Cruise Automation,DE Shaw,DJI,DRW,Databricks,Dataminr,Dell,Deutsche Bank,Directi,Docusign,DoorDash,Drawbridge,Dropbox,Druva,Dunzo,Duolingo,Epic Systems,Expedia,FPT,Facebook,FactSet,Flipkart,Gilt Groupe,GoDaddy,Goldman Sachs,Google,Grab,HBO,HRT,Honeywell,Hotstar,Huawei,Hulu,IBM,IIT Bombay,IMC,IXL,Indeed,Info Edge,Infosys,Intel,Intuit,JPMorgan,Jane Street,Jeavio,Karat,Leap Motion,LinkedIn,LiveRamp,Lyft,MAQ Software,MakeMyTrip,
-Mathworks,Mercari,Microsoft,MindTickle,MindTree,Moengage,Morgan Stanley,National Instruments,Netflix,Netsuite,Nuro,Nutanix,Nvidia,OT,Opendoor,Optum,Oracle,Palantir Technologies,PayTM,Paypal,PhonePe,Pinterest,Pocket Gems,Postmates,
-Pure Storage,Qualcomm,Qualtrics,Quora,Rakuten,Reddit,Redfin,Riot Games,Robinhood,Roblox,Rubrik,Rupeek,SAP,Salesforce,Samsung,Sapient,ServiceNow,Shopee,Snapchat,Softwire,Sony,Splunk,Spotify,Sprinklr,Square,Sumologic,Swiggy,T System,TIAA,Tencent,Tesla,Thumbtack,
-Tiger Analytics,Toptal,TripleByte,TuSimple,Twilio,Twitch,Twitter,Two Sigma,Uber,United Health Group,VMware,Valve,Virtu Financial,Visa,Walmart Global Tech,Wayfair,Wealthfront,Wish,Works Applications,Yahoo,Yandex,Yelp,ZScaler,Zenefits,Zillow,Zoho,Zomato,Zoom,
-Zopsmart,eBay,edabit,instacart,payu,peak6,persistent systems,razorpay,tcs,tiktok,zeta suite">
+    <meta name="description" content="Leetcode Coding Questions">
+    <meta name="description" content="Companies wise coding questions">
+    <meta name="description" content="APT Portfolio coding questions">
+    <meta name="description" content="Accenture coding questions">
+    <meta name="description" content="Activision coding questions">
+    <meta name="description" content="Adobe coding questions">
+    <meta name="description" content="Affirm coding questions">
+    <meta name="description" content="Airbnb coding questions">
+    <meta name="description" content="Akamai coding questions">
+    <meta name="description" content="Akuna Capital coding questions">
+    <meta name="description" content="Alation coding questions">
+    <meta name="description" content="Alibaba coding questions">
+    <meta name="description" content="AllinCall coding questions">
+    <meta name="description" content="Amazon coding questions">
+    <meta name="description" content="American Express coding questions">
+    <meta name="description" content="Apple coding questions">
+    <meta name="description" content="Arcesium coding questions">
+    <meta name="description" content="Arista Networks coding questions">
+    <meta name="description" content="Asana coding questions">
+    <meta name="description" content="Athenahealth coding questions">
+    <meta name="description" content="Atlassian coding questions">
+    <meta name="description" content="Baidu coding questions">
+    <meta name="description" content="Barclays coding questions">
+    <meta name="description" content="BlackRock coding questions">
+    <meta name="description" content="Bloomberg coding questions">
+    <meta name="description" content="Bolt coding questions">
+    <meta name="description" content="Booking coding questions">
+    <meta name="description" content="Box coding questions">
+    <meta name="description" content="ByteDance coding questions">
+    <meta name="description" content="C3 IoT coding questions">
+    <meta name="description" content="Canonical coding questions">
+    <meta name="description" content="Capital One coding questions">
+    <meta name="description" content="Cashfree coding questions">
+    <meta name="description" content="Cisco coding questions">
+    <meta name="description" content="Citadel coding questions">
+    <meta name="description" content="Citrix coding questions">
+    <meta name="description" content="Cohesity coding questions">
+    <meta name="description" content="Commvault coding questions">
+    <meta name="description" content="Coursera coding questions">
+    <meta name="description" content="Cruise Automation coding questions">
+    <meta name="description" content="DE Shaw coding questions">
+    <meta name="description" content="DJI coding questions">
+    <meta name="description" content="DRW coding questions">
+    <meta name="description" content="Databricks coding questions">
+    <meta name="description" content="Dataminr coding questions">
+    <meta name="description" content="Dell coding questions">
+    <meta name="description" content="Deutsche Bank coding questions">
+    <meta name="description" content="Directi coding questions">
+    <meta name="description" content="Docusign coding questions">
+    <meta name="description" content="DoorDash coding questions">
+    <meta name="description" content="Drawbridge coding questions">
+    <meta name="description" content="Dropbox coding questions">
+    <meta name="description" content="Druva coding questions">
+    <meta name="description" content="Dunzo coding questions">
+    <meta name="description" content="Duolingo coding questions">
+    <meta name="description" content="Epic Systems coding questions">
+    <meta name="description" content="Expedia coding questions">
+    <meta name="description" content="FPT coding questions">
+    <meta name="description" content="Facebook coding questions">
+    <meta name="description" content="FactSet coding questions">
+    <meta name="description" content="Flipkart coding questions">
+    <meta name="description" content="Gilt Groupe coding questions">
+    <meta name="description" content="GoDaddy coding questions">
+    <meta name="description" content="Goldman Sachs coding questions">
+    <meta name="description" content="Google coding questions">
+    <meta name="description" content="Grab coding questions">
+    <meta name="description" content="HBO coding questions">
+    <meta name="description" content="HRT coding questions">
+    <meta name="description" content="Honeywell coding questions">
+    <meta name="description" content="Hotstar coding questions">
+    <meta name="description" content="Huawei coding questions">
+    <meta name="description" content="Hulu coding questions">
+    <meta name="description" content="IBM coding questions">
+    <meta name="description" content="IIT Bombay coding questions">
+    <meta name="description" content="IMC coding questions">
+    <meta name="description" content="IXL coding questions">
+    <meta name="description" content="Indeed coding questions">
+    <meta name="description" content="Info Edge coding questions">
+    <meta name="description" content="Infosys coding questions">
+    <meta name="description" content="Intel coding questions">
+    <meta name="description" content="Intuit coding questions">
+    <meta name="description" content="JPMorgan coding questions">
+    <meta name="description" content="Jane Street coding questions">
+    <meta name="description" content="Jeavio coding questions">
+    <meta name="description" content="Karat coding questions">
+    <meta name="description" content="Leap Motion coding questions">
+    <meta name="description" content="LinkedIn coding questions">
+    <meta name="description" content="LiveRamp coding questions">
+    <meta name="description" content="Lyft coding questions">
+    <meta name="description" content="MAQ Software coding questions">
+    <meta name="description" content="MakeMyTrip coding questions">
+    <meta name="description" content="Mathworks coding questions">
+    <meta name="description" content="Mercari coding questions">
+    <meta name="description" content="Microsoft coding questions">
+    <meta name="description" content="MindTickle coding questions">
+    <meta name="description" content="MindTree coding questions">
+    <meta name="description" content="Moengage coding questions">
+    <meta name="description" content="Morgan Stanley coding questions">
+    <meta name="description" content="National Instruments coding questions">
+    <meta name="description" content="Netflix coding questions">
+    <meta name="description" content="Netsuite coding questions">
+    <meta name="description" content="Nuro coding questions">
+    <meta name="description" content="Nutanix coding questions">
+    <meta name="description" content="Nvidia coding questions">
+    <meta name="description" content="OT coding questions">
+    <meta name="description" content="Opendoor coding questions">
+    <meta name="description" content="Optum coding questions">
+    <meta name="description" content="Oracle coding questions">
+    <meta name="description" content="Palantir Technologies coding questions">
+    <meta name="description" content="PayTM coding questions">
+    <meta name="description" content="Paypal coding questions">
+    <meta name="description" content="PhonePe coding questions">
+    <meta name="description" content="Pinterest coding questions">
+    <meta name="description" content="Pocket Gems coding questions">
+    <meta name="description" content="Postmates coding questions">
+    <meta name="description" content="Pure Storage coding questions">
+    <meta name="description" content="Qualcomm coding questions">
+    <meta name="description" content="Qualtrics coding questions">
+    <meta name="description" content="Quora coding questions">
+    <meta name="description" content="Rakuten coding questions">
+    <meta name="description" content="Reddit coding questions">
+    <meta name="description" content="Redfin coding questions">
+    <meta name="description" content="Riot Games coding questions">
+    <meta name="description" content="Robinhood coding questions">
+    <meta name="description" content="Roblox coding questions">
+    <meta name="description" content="Rubrik coding questions">
+    <meta name="description" content="Rupeek coding questions">
+    <meta name="description" content="SAP coding questions">
+    <meta name="description" content="Salesforce coding questions">
+    <meta name="description" content="Samsung coding questions">
+    <meta name="description" content="Sapient coding questions">
+    <meta name="description" content="ServiceNow coding questions">
+    <meta name="description" content="Shopee coding questions">
+    <meta name="description" content="Snapchat coding questions">
+    <meta name="description" content="Softwire coding questions">
+    <meta name="description" content="Sony coding questions">
+    <meta name="description" content="Splunk coding questions">
+    <meta name="description" content="Spotify coding questions">
+    <meta name="description" content="Sprinklr coding questions">
+    <meta name="description" content="Square coding questions">
+    <meta name="description" content="Sumologic coding questions">
+    <meta name="description" content="Swiggy coding questions">
+    <meta name="description" content="T System coding questions">
+    <meta name="description" content="TIAA coding questions">
+    <meta name="description" content="Tencent coding questions">
+    <meta name="description" content="Tesla coding questions">
+    <meta name="description" content="Thumbtack coding questions">
+    <meta name="description" content="Tiger Analytics coding questions">
+    <meta name="description" content="Toptal coding questions">
+    <meta name="description" content="TripleByte coding questions">
+    <meta name="description" content="TuSimple coding questions">
+    <meta name="description" content="Twilio coding questions">
+    <meta name="description" content="Twitch coding questions">
+    <meta name="description" content="Twitter coding questions">
+    <meta name="description" content="Two Sigma coding questions">
+    <meta name="description" content="Uber coding questions">
+    <meta name="description" content="United Health Group coding questions">
+    <meta name="description" content="VMware coding questions">
+    <meta name="description" content="Valve coding questions">
+    <meta name="description" content="Virtu Financial coding questions">
+    <meta name="description" content="Visa coding questions">
+    <meta name="description" content="Walmart Global Tech coding questions">
+    <meta name="description" content="Wayfair coding questions">
+    <meta name="description" content="Wealthfront coding questions">
+    <meta name="description" content="Wish coding questions">
+    <meta name="description" content="Works Applications coding questions">
+    <meta name="description" content="Yahoo coding questions">
+    <meta name="description" content="Yandex coding questions">
+    <meta name="description" content="Yelp coding questions">
+    <meta name="description" content="ZScaler coding questions">
+    <meta name="description" content="Zenefits coding questions">
+    <meta name="description" content="Zillow coding questions">
+    <meta name="description" content="Zoho coding questions">
+    <meta name="description" content="Zomato coding questions">
+    <meta name="description" content="Zoom coding questions">
+    <meta name="description" content="Zopsmart coding questions">
+    <meta name="description" content="eBay coding questions">
+    <meta name="description" content="edabit coding questions">
+    <meta name="description" content="instacart coding questions">
+    <meta name="description" content="payu coding questions">
+    <meta name="description" content="peak6 coding questions">
+    <meta name="description" content="persistent systems coding questions">
+    <meta name="description" content="razorpay coding questions">
+    <meta name="description" content="tcs coding questions">
+    <meta name="description" content="tiktok coding questions">
+    <meta name="description" content="zeta suite coding questions">
+
+
+
+    <meta name = "keywords", content="APT Portfolio,Accenture,Activision,Adobe,Affirm,Airbnb,Akamai,Akuna Capital,Alation,Alibaba,AllinCall,Amazon,American Express,Apple,Arcesium,Arista Networks,Asana,Athenahealth,Atlassian,Baidu,Barclays,BlackRock,Bloomberg,Bolt,Booking,Box,ByteDance,C3 IoT,Canonical,Capital One,Cashfree,Cisco,Citadel,Citrix,Cohesity,Commvault,Coursera,Cruise Automation,DE Shaw,DJI,DRW,Databricks,Dataminr,Dell,Deutsche Bank,Directi,Docusign,DoorDash,Drawbridge,Dropbox,Druva,Dunzo,Duolingo,Epic Systems,Expedia,FPT,Facebook,FactSet,Flipkart,Gilt Groupe,GoDaddy,Goldman Sachs,Google,Grab,HBO,HRT,Honeywell,Hotstar,Huawei,Hulu,IBM,IIT Bombay,IMC,IXL,Indeed,Info Edge,Infosys,Intel,Intuit,JPMorgan,Jane Street,Jeavio,Karat,Leap Motion,LinkedIn,LiveRamp,Lyft,MAQ Software,MakeMyTrip,
+    Mathworks,Mercari,Microsoft,MindTickle,MindTree,Moengage,Morgan Stanley,National Instruments,Netflix,Netsuite,Nuro,Nutanix,Nvidia,OT,Opendoor,Optum,Oracle,Palantir Technologies,PayTM,Paypal,PhonePe,Pinterest,Pocket Gems,Postmates,
+    Pure Storage,Qualcomm,Qualtrics,Quora,Rakuten,Reddit,Redfin,Riot Games,Robinhood,Roblox,Rubrik,Rupeek,SAP,Salesforce,Samsung,Sapient,ServiceNow,Shopee,Snapchat,Softwire,Sony,Splunk,Spotify,Sprinklr,Square,Sumologic,Swiggy,T System,TIAA,Tencent,Tesla,Thumbtack,
+    Tiger Analytics,Toptal,TripleByte,TuSimple,Twilio,Twitch,Twitter,Two Sigma,Uber,United Health Group,VMware,Valve,Virtu Financial,Visa,Walmart Global Tech,Wayfair,Wealthfront,Wish,Works Applications,Yahoo,Yandex,Yelp,ZScaler,Zenefits,Zillow,Zoho,Zomato,Zoom,
+    Zopsmart,eBay,edabit,instacart,payu,peak6,persistent systems,razorpay,tcs,tiktok,zeta suite">
 
 {% endblock %}
 
@@ -21,11 +208,18 @@ Zopsmart,eBay,edabit,instacart,payu,peak6,persistent systems,razorpay,tcs,tiktok
             {% if current_user.is_authenticated %}
             <h3 style="font-family: Raleway, sans-serif;text-align: left; margin-left: 20px"> Welcome {{ current_user.name}}</h3>
             {% endif %}
+        </div>
+        <div class="row">
+    <div class="col">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <input id="name-filter" type="search" placeholder="Company name" onkeyup="filterTable()" /></div>
+            </div>
+        </div>
+    </div>
+</div>
 
-        </div>
-        <div class="col" style="font-family: Raleway, sans-serif;">
-            <header style="font-family: Raleway, sans-serif;"></header>
-        </div>
     </div>
     <div class="table-responsive d-lg-flex align-items-lg-center" style="margin-top: 20px; margin-right: 20px; margin-left: 20px;">
         <table class="table table-responsive">
@@ -36,10 +230,10 @@ Zopsmart,eBay,edabit,instacart,payu,peak6,persistent systems,razorpay,tcs,tiktok
                     <th style="font-family: Raleway, sans-serif;width: 50px">Total</th>
                 </tr>
             </thead>
-            <tbody style="font-family: Raleway, sans-serif;">
+            <tbody style="font-family: Raleway, sans-serif;" id="table-body">
                 {% for company in company %}
                 <tr style="font-family: Raleway, sans-serif;">
-                    <td style="font-family: Raleway, sans-serif;width: 20px;">{{ loop.index+1 }}</td>
+                    <td style="font-family: Raleway, sans-serif;width: 20px;">{{ loop.index}}</td>
                     <td style="font-family: Raleway, sans-serif;"><a href ="/company/{{ company['_id'] }}">{{ company['_id'] }}</a></td>
                     <td style="font-family: Raleway, sans-serif;">{{ company['count'] }}</td>
                 </tr>
@@ -48,4 +242,53 @@ Zopsmart,eBay,edabit,instacart,payu,peak6,persistent systems,razorpay,tcs,tiktok
             </tbody>
         </table>
     </div>
+
+<script>
+function filterTable() {
+  // Get the name to filter by
+  var name = document.getElementById("name-filter").value;
+
+  // Get the table rows
+  var rows = document.getElementById("table-body").rows;
+
+  // Loop through all the rows and hide the ones that don't match the name
+  for (var i = 0; i < rows.length; i++) {
+    var nameCell = rows[i].cells[1];
+    if (nameCell.innerHTML.toLowerCase().indexOf(name.toLowerCase()) === -1) {
+      rows[i].style.display = "none";
+    } else {
+      rows[i].style.display = "";
+    }
+  }
+}
+</script>
+<style>
+  #name-filter {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 16px;
+      width: 300px;
+  }
+
+  #name-filter:focus {
+    outline: none;
+    border-color: #aaa;
+  }
+
+  #filter-button {
+    background-color: #4caf50;
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  #filter-button:hover {
+    background-color: #46a049;
+  }
+</style>
+
 {% endblock %}

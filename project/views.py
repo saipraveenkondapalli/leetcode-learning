@@ -113,10 +113,7 @@ def company(company_name):
     # Run the aggregation pipeline
     result = Problems.objects.aggregate(pipeline)
 
-
-    return render_template('company list.html',name = company_name,  problems=result)
-
-
+    return render_template('company_questions.html', name = company_name, problems=result)
 
 # ----------------------------------------------------------- END OF COMPANY LIST ----------------------------------------------------------------------------------
 

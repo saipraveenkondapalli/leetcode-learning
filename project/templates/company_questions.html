@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+
+{% block title %} Companies {% endblock %}
+{%block meta %}
+<meta name="description" content="{{ name }} previous coding questions">
+<meta name="description" content="{{ name }} leetcode coding questions">
+<meta name="description" content="{{ name }} Company wise coding questions">
+<meta name="description" content="{{ name }} coding questions">
+<meta name="description" content="{{ name }} exam coding questions">
+<meta name="description" content="{{ name }} drive coding questions">
+<meta name="description" content="{{ name }} interview coding questions">
+{% endblock %}
+{% block body %}
+
+<div class="row">
+        <div class="col">
+            <h1 style="font-family: Raleway, sans-serif;text-align: center;">{{ name }}</h1>
+        </div>
+        <div class="col" style="font-family: Raleway, sans-serif;">
+            <header style="font-family: Raleway, sans-serif;"></header>
+        </div>
+    </div>
+<div class="row">
+    <div class="col">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <input id="name-filter" type="search" placeholder="Search for names.." onkeyup="filterTable()" /></div>
+                <div class="col-md-6">
+                    <div class="dropdown"><button id="level-filter" class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="border-radius: 20px;">Level</button>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="#" onclick="filterlevel('all')">All</a>
+    <a class="dropdown-item" href="#" onclick="filterlevel('easy')">Easy</a>
+    <a class="dropdown-item" href="#" onclick="filterlevel('medium')">Medium</a>
+    <a class="dropdown-item" href="#" onclick="filterlevel('hard')">Hard</a>
+    </div>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <div class="table-responsive d-lg-flex align-items-lg-center" style="margin-top: 20px; margin-right: 20px; margin-left: 20px;">
+
+            <table class="table table-responsive">
+
+            <thead>
+                <tr class="text-start">
+                    <th style="font-family: Raleway, sans-serif;width: 20px;">S.no</th>
+                    <th style="font-family: Raleway, sans-serif;" onclick=" sortTable(1)" >Name</th>
+                <th style="font-family: Raleway, sans-serif;" onclick="sortTable(2)">Level</th>
+                <th style="font-family: Raleway, sans-serif;" onclick="sortTable(3)">Frequency</th>
+                </tr>
+            </thead>
+            <tbody style="font-family: Raleway, sans-serif;"  id="table-body">
+                {% for problem in problems%}
+                <tr style="font-family: Raleway, sans-serif;">
+                    <td style="font-family: Raleway, sans-serif;width: 20px;">{{ loop.index}}</td>
+                    <td style="font-family: Raleway, sans-serif;"><a href ="{{ problem['link'] }}" target="_blank">{{ problem['name'] }}</a></td>
+                    <td style="font-family: Raleway, sans-serif;width: 48px">{{ problem['level'] }}</td>
+                    <td style="font-family: Raleway, sans-serif;">{{ problem['company']['freq'] }}</td>
+                </tr>
+               {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+    {% block scripts %}
+<script>
+function filterTable() {
+  // Get the name to filter by
+  var name = document.getElementById("name-filter").value;
+
+  // Get the table rows
+  var rows = document.getElementById("table-body").rows;
+
+  // Loop through all the rows and hide the ones that don't match the name
+  for (var i = 0; i < rows.length; i++) {
+    var nameCell = rows[i].cells[1];
+    if (nameCell.innerHTML.toLowerCase().indexOf(name.toLowerCase()) === -1) {
+      rows[i].style.display = "none";
+    } else {
+      rows[i].style.display = "";
+    }
+  }
+}
+</script>
+
+<script>
+function filterlevel(level) {
+  // Get the table rows
+  var rows = document.getElementById("table-body").rows;
+
+  // Loop through the rows and hide the ones that don't match the selected level
+  for (var i = 0; i < rows.length; i++) {
+    var rowLevel = rows[i].cells[2].innerHTML.toLowerCase();
+    if (level === "all" || level === rowLevel) {
+      rows[i].style.display = "";
+    } else {
+      rows[i].style.display = "none";
+    }
+  }
+}
+
+</script>
+<style>
+  #name-filter {
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 16px;
+  }
+
+  #name-filter:focus {
+    outline: none;
+    border-color: #aaa;
+  }
+
+  #filter-button {
+    background-color: #4caf50;
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  #filter-button:hover {
+    background-color: #46a049;
+  }
+</style>
+
+{% endblock %}
+
+
+
+{% endblock %}
+
+
