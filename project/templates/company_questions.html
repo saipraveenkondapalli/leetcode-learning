@@ -103,12 +103,17 @@ function filterlevel(level) {
   var rows = document.getElementById("table-body").rows;
 
   // Loop through the rows and hide the ones that don't match the selected level
+    serial = 1;
   for (var i = 0; i < rows.length; i++) {
     var rowLevel = rows[i].cells[2].innerHTML.toLowerCase();
     if (level === "all" || level === rowLevel) {
       rows[i].style.display = "";
+      rows[i].cells[0].innerHTML = serial;
+        serial++;
     } else {
-      rows[i].style.display = "none";
+
+        rows[i].style.display = "none";
+
     }
   }
 }
