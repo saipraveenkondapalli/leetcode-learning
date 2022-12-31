@@ -250,13 +250,15 @@ function filterTable() {
 
   // Get the table rows
   var rows = document.getElementById("table-body").rows;
-
+ serial = 1;
   // Loop through all the rows and hide the ones that don't match the name
   for (var i = 0; i < rows.length; i++) {
     var nameCell = rows[i].cells[1];
     if (nameCell.innerHTML.toLowerCase().indexOf(name.toLowerCase()) === -1) {
       rows[i].style.display = "none";
     } else {
+        rows[i].cells[0].innerHTML = serial;
+      serial++;
       rows[i].style.display = "";
     }
   }
@@ -290,5 +292,4 @@ function filterTable() {
     background-color: #46a049;
   }
 </style>
-
 {% endblock %}

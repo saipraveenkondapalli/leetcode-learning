@@ -20,6 +20,7 @@
             <header style="font-family: Raleway, sans-serif;"></header>
         </div>
     </div>
+
 <div class="row">
     <div class="col">
         <div class="container">
@@ -33,6 +34,7 @@
     <a class="dropdown-item" href="#" onclick="filterlevel('easy')">Easy</a>
     <a class="dropdown-item" href="#" onclick="filterlevel('medium')">Medium</a>
     <a class="dropdown-item" href="#" onclick="filterlevel('hard')">Hard</a>
+    <a class="dropdown-item" href="#" onclick="filterlevel('premium')">Premium</a>
     </div>
 </div>
                 </div>
@@ -41,8 +43,7 @@
     </div>
 </div>
 
-
-    <div class="table-responsive d-lg-flex align-items-lg-center" style="margin-top: 20px; margin-right: 20px; margin-left: 20px;">
+<div class="table-responsive d-lg-flex align-items-lg-center" style="margin-top: 20px; margin-right: 20px; margin-left: 20px;">
 
             <table class="table table-responsive">
 
@@ -67,26 +68,34 @@
             </tbody>
         </table>
     </div>
-    {% block scripts %}
+
+
+
+
 <script>
-function filterTable() {
-  // Get the name to filter by
-  var name = document.getElementById("name-filter").value;
 
-  // Get the table rows
-  var rows = document.getElementById("table-body").rows;
+    function filterTable() {
+      // Get the name to filter by
+      var name = document.getElementById("name-filter").value;
 
-  // Loop through all the rows and hide the ones that don't match the name
-  for (var i = 0; i < rows.length; i++) {
-    var nameCell = rows[i].cells[1];
-    if (nameCell.innerHTML.toLowerCase().indexOf(name.toLowerCase()) === -1) {
-      rows[i].style.display = "none";
-    } else {
-      rows[i].style.display = "";
+      // Get the table rows
+      var rows = document.getElementById("table-body").rows;
+        serial = 1;
+      // Loop through all the rows and hide the ones that don't match the name
+      for (var i = 0; i < rows.length; i++) {
+        var nameCell = rows[i].cells[1];
+        if (nameCell.innerHTML.toLowerCase().indexOf(name.toLowerCase()) === -1) {
+          rows[i].style.display = "none";
+        } else {
+        rows[i].cells[0].innerHTML = serial;
+        serial++;
+          rows[i].style.display = "";
+        }
+      }
     }
-  }
-}
 </script>
+
+
 
 <script>
 function filterlevel(level) {
@@ -105,6 +114,8 @@ function filterlevel(level) {
 }
 
 </script>
+
+
 <style>
   #name-filter {
     border: 2px solid #ccc;
@@ -132,9 +143,6 @@ function filterlevel(level) {
     background-color: #46a049;
   }
 </style>
-
-{% endblock %}
-
 
 
 {% endblock %}
