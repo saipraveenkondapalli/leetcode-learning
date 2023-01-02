@@ -1,0 +1,27 @@
+
+
+<div class="table-responsive d-lg-flex align-items-lg-center" style="margin-top: 20px; margin-right: 20px; margin-left: 20px;">
+
+            <table class="table table-responsive">
+
+            <thead>
+                <tr class="text-start">
+                    <th style="font-family: Raleway, sans-serif;width: 20px;">S.no</th>
+                    <th style="font-family: Raleway, sans-serif;" onclick=" sortTable(1)" >Name</th>
+                <th style="font-family: Raleway, sans-serif;" onclick="sortTable(2)">Level</th>
+                <th style="font-family: Raleway, sans-serif;" onclick="sortTable(3)">Companies</th>
+                </tr>
+            </thead>
+            <tbody style="font-family: Raleway, sans-serif;"  id="table-body">
+                {% for problem in problems%}
+                <tr style="font-family: Raleway, sans-serif;">
+                    <td style="font-family: Raleway, sans-serif;width: 20px;">{{ loop.index + (page-1)*50  }}</td>
+                    <td style="font-family: Raleway, sans-serif;"><a href ="{{ problem['link'] }}" target="_blank">{{ problem['name'] }}</a></td>
+                    <td style="font-family: Raleway, sans-serif;width: 48px">{{ problem['level'] }}</td>
+                    <td style="font-family: Raleway, sans-serif;">{{(problem['company'] | length) }}</td>
+                </tr>
+               {% endfor %}
+
+            </tbody>
+        </table>
+    </div>

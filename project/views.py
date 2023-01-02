@@ -37,7 +37,7 @@ def problems():
 
 # -------------------------------------------------------------------------Companies---------------------------------------------------------------------------------------------
 
-
+"""
 @app.route('/chart_data')
 def chart_data():
     # Load the data from your database or other source
@@ -74,10 +74,9 @@ def chart_data():
 
 
     return jsonify({'company_name': company_name, 'company_count': company_count, "easy": easy, "medium": medium, "hard": hard, "total": total})
-
+"""
 
 @app.route('/companies')
-
 def companies():
     pipeline = [
         {"$unwind": "$company"},  # unpack the "company" array field
@@ -104,7 +103,7 @@ def company(company_name):
         {'$unwind': '$company'},
         # Match the 'company.name' field again to filter out any documents that do not have a 'company.name' field equal to 'company_name'
         {'$match': {'company.name': company_name}},
-        {'$sort': {'company.freq': -1}},
+        {'$sort': {'company_count': -1}},
         # Project the 'name', 'link', and 'company' fields into the output documents
         {'$project': {'name': 1, 'link': 1, 'level': 1, 'company': 1}}
     ]
@@ -118,8 +117,61 @@ def company(company_name):
 # ----------------------------------------------------------- END OF COMPANY LIST ----------------------------------------------------------------------------------
 
 
+@app.route('/problems', methods = ['GET', 'POST'])
+def problems():
+    level = request.args.get('level')
+    category = request.args.get('category')
+    print(f"level: {level}, category: {category}")
+    if level == "All":
+        level = None
+    if level and category:
+        problems = Problems.objects().filter(level = level, category__in=[category]).order_by('-total_companies').paginate(page=1,
+                                                                                                            per_page=50)
+    elif level and not category:
+        problems = Problems.objects().filter(level = level).order_by('-total_companies').paginate(page=1, per_page=50)
+    elif category and not level:
+        problems = Problems.objects().filter(category__in=[category]).order_by('-total_companies').paginate(page=1,per_page=50)
+    else:
+        problems = Problems.objects().order_by('-total_companies').paginate(page=1, per_page=50)
+
+    return render_template('problems.html', problems=problems.items, page= 1)
 
 
+
+
+@app.route('/filter')
+def test():
+    level = request.args.get('level')
+    category = request.args.get('category')
+    page = request.args.get('page')
+
+    if page is None:
+        page = 1
+    else:
+        page = int(page)
+    if level is None:
+        level = 'All'
+
+    if category is None or len(category) == 0:
+        category = 'All'
+
+    # print(f"level: {level}, category: {category}, page: {page}, type: {type(page)}")
+
+    if level == 'All' and category == 'All':
+        problems = Problems.objects().order_by('-total_companies').paginate(page=page, per_page=50)
+
+    elif level == 'All' and category != 'All':
+        problems = Problems.objects().filter(category__in=[category]).order_by('-total_companies').paginate(page=page,
+                                                                                                            per_page=50)
+
+    elif level != 'All' and category == 'All':
+        problems = Problems.objects().filter(level=level).order_by('-total_companies').paginate(page=page, per_page=50)
+    else:
+        problems = Problems.objects().filter(level=level, category__in=[category]).order_by(
+            '-total_companies').paginate(page=page, per_page=50)
+
+    # print(*list(problems.items), sep='\n')
+    return render_template('table_generate.html', problems=problems.items, page=page)
 
 
 """

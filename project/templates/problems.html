@@ -1,0 +1,281 @@
+{% extends "base.html"  %}
+
+{% block title %} Problems {% endblock %}
+
+{% block meta %}
+
+<meta name="description" content="company coding questions">
+<meta name = "website" content="Leetcodeproblems.tech">
+<meta name="description" content="Welcome to our website! Here, you will find a collection of over 1000 coding problems related to companies sourced from open source GitHub repositories. These problems are carefully selected to provide a challenging and rewarding learning experience for developers at all levels. Explore our collection and improve your skills with the latest technologies and best practices. Happy coding!">
+<meta name="keywords" content="company wise coding questions, leetcode comapany wise coding questions, leetcode, coding problems, companies, open source, GitHub, developers, skills, technologies, apple, google, amazon, best practices"><meta name="description" content="{{ name }} previous coding questions">
+<meta name="description" content="leetcode coding questions">
+<meta name="description" content="Company wise coding questions">
+<meta name="description" content="coding questions">
+<meta name="description" content="exam coding questions">
+<meta name="description" content="drive coding questions">
+<meta name="description" content="interview coding questions">
+
+{% endblock %}
+
+{% block body %}
+    <form>
+<div class="container">
+
+        <div class="row">
+            <div class="col-md-6">
+                <label for="levelFilter">Level</label>
+                        <select class="form-select" id="levelFilter">
+                                <option >All</option>
+                                <option value ="Easy">Easy</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Hard">Hard</option>
+                                <option value="Premium">Premium</option>
+                        </select>
+            </div>
+            <div class="col-md-6">
+                <label for="categoryFilter">Category</label>
+                <select class="form-select" id="categoryFilter">
+                    <option selected  value="">All</option>
+                    <option value="array">Array</option>
+                    <option value="backtracking">Backtracking</option>
+                    <option value="binary-indexed-tree">Binary-indexed-tree</option>
+                    <option value="binary-search">Binary-search</option>
+                    <option value="binary-search-tree">Binary-search-tree</option>
+                    <option value="binary-tree">Binary-tree</option>
+                    <option value="bit-manipulation">Bit-manipulation</option>
+                    <option value="bitmask">Bitmask</option>
+                    <option value="brainteaser">Brainteaser</option>
+                    <option value="breadth-first-search">Breadth-first-search</option>
+                    <option value="bucket-sort">Bucket-sort</option>
+                    <option value="combinatorics">Combinatorics</option>
+                    <option value="concurrency">Concurrency</option>
+                    <option value="counting">Counting</option>
+                    <option value="counting-sort">Counting-sort</option>
+                    <option value="data-stream">Data-stream</option>
+                    <option value="depth-first-search">Depth-first-search</option>
+                    <option value="design">Design</option>
+                    <option value="divide-and-conquer">Divide-and-conquer</option>
+                    <option value="doubly-linked-list">Doubly-linked-list</option>
+                    <option value="dynamic-programming">Dynamic-programming</option>
+                    <option value="enumeration">Enumeration</option>
+                    <option value="eulerian-circuit">Eulerian-circuit</option>
+                    <option value="game-theory">Game-theory</option>
+                    <option value="geometry">Geometry</option>
+                    <option value="graph">Graph</option>
+                    <option value="greedy">Greedy</option>
+                    <option value="hash-function">Hash-function</option>
+                    <option value="hash-table">Hash-table</option>
+                    <option value="heap-priority-queue">Heap-priority-queue</option>
+                    <option value="interactive">Interactive</option>
+                    <option value="iterator">Iterator</option>
+                    <option value="line-sweep">Line-sweep</option>
+                    <option value="linked-list">Linked-list</option>
+                    <option value="math">Math</option>
+                    <option value="matrix">Matrix</option>
+                    <option value="memoization">Memoization</option>
+                    <option value="merge-sort">Merge-sort</option>
+                    <option value="monotonic-queue">Monotonic-queue</option>
+                    <option value="monotonic-stack">Monotonic-stack</option>
+                    <option value="number-theory">Number-theory</option>
+                    <option value="ordered-set">Ordered-set</option>
+                    <option value="prefix-sum">Prefix-sum</option>
+                    <option value="queue">Queue</option>
+                    <option value="quickselect">Quickselect</option>
+                    <option value="radix-sort">Radix-sort</option>
+                    <option value="randomized">Randomized</option>
+                    <option value="recursion">Recursion</option>
+                    <option value="rejection-sampling">Rejection-sampling</option>
+                    <option value="reservoir-sampling">Reservoir-sampling</option>
+                    <option value="rolling-hash">Rolling-hash</option>
+                    <option value="segment-tree">Segment-tree</option>
+                    <option value="shortest-path">Shortest-path</option>
+                    <option value="simulation">Simulation</option>
+                    <option value="sliding-window">Sliding-window</option>
+                    <option value="sorting">Sorting</option>
+                    <option value="stack">Stack</option>
+                    <option value="string">String</option>
+                    <option value="string-matching">String-matching</option>
+                    <option value="topological-sort">Topological-sort</option>
+                    <option value="tree">Tree</option>
+                    <option value="trie">Trie</option>
+                    <option value="two-pointers">Two-pointers</option>
+                    <option value="union-find">Union-find</option>
+                </select>
+            </div>
+        </div>
+
+</div>
+<div id = "filter">
+<div class="table-responsive d-lg-flex align-items-lg-center" style="margin-top: 20px; margin-right: 20px; margin-left: 20px;">
+
+            <table class="table table-responsive">
+
+            <thead>
+                <tr class="text-start">
+                    <th style="font-family: Raleway, sans-serif;width: 20px;">S.no</th>
+                    <th style="font-family: Raleway, sans-serif;" onclick=" sortTable(1)" >Name</th>
+                <th style="font-family: Raleway, sans-serif;" onclick="sortTable(2)">Level</th>
+                <th style="font-family: Raleway, sans-serif;" onclick="sortTable(3)">Frequency</th>
+                </tr>
+            </thead>
+            <tbody style="font-family: Raleway, sans-serif;"  id="table-body">
+                {% for problem in problems%}
+                <tr style="font-family: Raleway, sans-serif;">
+                    <td style="font-family: Raleway, sans-serif;width: 20px;">{{ loop.index + 50*(page-1)}}</td>
+                    <td style="font-family: Raleway, sans-serif;"><a href ="{{ problem['link'] }}" target="_blank">{{ problem['name'] }}</a></td>
+                    <td style="font-family: Raleway, sans-serif;width: 48px">{{ problem['level'] }}</td>
+                    <td style="font-family: Raleway, sans-serif;">{{ problem['total_companies'] }}</td>
+                </tr>
+               {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+</div>
+    <nav>
+    <ul class="pagination justify-content-center">
+        <li class="page-item"><a  class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
+        <li class="page-item"><a id="page-number" class="page-link">1</a></li>
+        <li class="page-item"><a  class="page-link" aria-label="Next" ><span aria-hidden="true">»</span></a></li>
+    </ul>
+</nav>
+
+</form>
+
+<script>
+    // Get the "previous" and "next" buttons
+var prevButton = document.querySelector('.page-item .page-link[aria-label="Previous"]');
+var nextButton = document.querySelector('.page-item .page-link[aria-label="Next"]');
+
+// Get the page number element
+var pageNumber = document.querySelector('#page-number');
+
+// Listen for clicks on the "previous" button
+prevButton.addEventListener('click', function(event) {
+  event.preventDefault();
+
+  // Decrement the page number and update the page number element
+  var currentPage = parseInt(pageNumber.textContent);
+  pageNumber.textContent = currentPage - 1;
+  sendRequest();
+});
+
+// Listen for clicks on the "next" button
+nextButton.addEventListener('click', function(event) {
+  event.preventDefault();
+
+  // Increment the page number and update the page number element
+  var currentPage = parseInt(pageNumber.textContent);
+  pageNumber.textContent = currentPage + 1;
+  sendRequest();
+});
+
+    </script>
+
+
+<script>
+
+    function sendRequest() {
+    // Get the selected level, category, and page number
+    var level = levelSelect.value;
+    var category = categorySelect.value;
+    var page = document.getElementById("page-number").innerText;
+    page = parseInt(page);
+    // Send an HTTP request to the /filter URL with the selected filters as query parameters
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/filter?level=' + level + '&category=' + category + '&page=' + page);
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            // If the request was successful, replace the table body with the response
+            document.getElementById('filter').innerHTML = xhr.responseText;
+            // enable the next link
+            document.querySelector('.page-item .page-link[aria-label="Next"]').style.pointerEvents = 'auto';
+            window.history.pushState({}, '', '/problems?level=' + level + '&category=' + category + '&page=' + page);
+
+        }
+        else {
+
+            //disable the next link and set the page number to 1
+            document.getElementById("page-number").innerText = page - 1;
+            document.querySelector('.page-item .page-link[aria-label="Next"]').style.pointerEvents = 'none';
+        }
+    };
+    xhr.send();
+}
+
+
+    // Get the form element
+    var form = document.querySelector('form');
+
+    // Listen for the submit event on the form
+
+
+    // Get the select elements
+    var levelSelect = document.querySelector('#levelFilter');
+    var categorySelect = document.querySelector('#categoryFilter');
+    var PageNumber = document.querySelector('#page-number');
+    // Listen for the change event on the select elements and set the page number to 1
+    levelSelect.addEventListener('input', function(event) {
+      PageNumber.innerText = 1;
+      sendRequest();
+    });
+    categorySelect.addEventListener('input', function(event) {
+      PageNumber.innerText = 1;
+      sendRequest();
+    });
+
+
+</script>
+
+
+<script>
+function filterOptions() {
+  // Get the search query
+  var search = document.getElementById("searchBox").value.toLowerCase();
+  // Get the select element and all its options
+  var select = document.getElementById("categoryFilter");
+  var options = select.options;
+
+  // Loop through the options and hide those that don't match the search query
+  for (i = 0; i < options.length; i++) {
+    var option = options[i];
+    if (option.text.toLowerCase().indexOf(search) > -1) {
+      option.style.display = "";
+    } else {
+      option.style.display = "none";
+    }
+  }
+}
+</script>
+
+
+<script>
+
+    // Get the level and category filters
+var levelFilter = document.querySelector('#levelFilter');
+var categoryFilter = document.querySelector('#categoryFilter');
+
+// Get the URL parameters
+var urlParams = new URLSearchParams(window.location.search);
+
+// Get the level and category parameters from the URL
+var level = urlParams.get('level');
+var category = urlParams.get('category');
+
+// If the level parameter is present, select the corresponding option in the level filter
+if (level) {
+  levelFilter.value = level;
+  levelFilter.click();
+}
+
+// If the category parameter is present, select the corresponding option in the category filter
+if (category) {
+  categoryFilter.value = category;
+  categoryFilter.click();
+}
+window.onpopstate = function(event) {
+    // Get the current URL
+    var currentUrl = new URL(window.location.href);
+}
+    </script>
+{% endblock %}

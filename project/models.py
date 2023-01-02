@@ -42,6 +42,7 @@ class Problems(db.Document):
     link = db.StringField(required=True)
     level = db.StringField()
     category = db.ListField(db.StringField())
+    total_companies = db.IntField()
     company = db.EmbeddedDocumentListField(Company)
 
     meta = {'collection': 'problems'}
