@@ -14,10 +14,27 @@
 <meta name="description" content="exam coding questions">
 <meta name="description" content="drive coding questions">
 <meta name="description" content="interview coding questions">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 {% endblock %}
 
 {% block body %}
+
+  <!-- Your page content goes here -->
+  <a href="#" id="move-to-top">
+    <i class="fa fa-arrow-up"></i>
+  </a>
+
+<style>
+#move-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  color: black;
+    font-size: 30px;
+}
+
+</style>
     <form>
 <div class="container">
 
@@ -102,9 +119,19 @@
                     <option value="union-find">Union-find</option>
                 </select>
             </div>
+            <div class = "col-md-6">
+                <!--search bar-->
+
+                        <input class = "form-control" style="margin-top: 10px" type="text" placeholder="search questions" name="query" id="query">
+                </div>
+                            <div class = "col-md-6">
+                        <button class = "btn btn-primary" id = 'search-button' type="submit" style="margin-top: 10px;">Search</button>
+                            </div>
+
+            </div>
         </div>
 
-</div>
+
 <div id = "filter">
 <div class="table-responsive d-lg-flex align-items-lg-center" style="margin-top: 20px; margin-right: 20px; margin-left: 20px;">
 
@@ -141,6 +168,60 @@
 </nav>
 
 </form>
+<script>
+var query = document.getElementById('query');
+document.getElementById('query').addEventListener('input', function(event) {
+    if (query.value.length === 0) {
+        window.location.href = '/problems';
+    }
+});
+
+</script>
+<script>
+document.getElementById('search-button').addEventListener('click', function() {
+  event.preventDefault();
+  //alert('You searched for: ' + document.getElementById('query').value);
+
+  var query = document.getElementById('query').value;
+  if (query.length < 3) {
+    return
+  }
+
+  document.getElementById('filter').innerHTML = '<img src="https://gifimage.net/wp-content/uploads/2017/09/blue-loading-gif-transparent-6.gif" style="display: block; margin-top: 60px; margin-bottom:100px; margin-left: auto; margin-right: auto; height: 25px; width: 25px;">';
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', '/search?search=' + query);
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      // Success: parse the JSON response and display the results
+      document.getElementById('filter').innerHTML = xhr.responseText;
+    } else {
+      // Error: display an error message
+      console.error('Error: ' + xhr.status);
+    }
+  };
+  xhr.send();
+});
+
+/*function displayResults(results) {
+  // Clear the existing results
+  document.getElementById('results').innerHTML = '';
+
+  // Iterate through the results and display them
+  for (var i = 0; i < results.length; i++) {
+    var result = results[i];
+    var name = result.name;
+
+    // Create a new list item for the result
+    var li = document.createElement('li');
+    li.textContent = name;
+
+    // Add the result to the list
+    document.getElementById('results').appendChild(li);
+  }
+} */
+
+</script>
 
 <script>
     // Get the "previous" and "next" buttons

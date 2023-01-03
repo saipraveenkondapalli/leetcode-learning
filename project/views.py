@@ -174,6 +174,14 @@ def test():
     return render_template('table_generate.html', problems=problems.items, page=page)
 
 
+@app.route('/search', methods = ['GET', 'POST'])
+def search():
+
+    words = request.args.get('search')
+    prob = Problems.objects().search_text(words).order_by('$text_score')
+    return render_template('table_generate.html', problems=prob, page=1)
+
+
 """
 @app.route('/upload', methods = ['POST', 'GET'])
 def upload():
