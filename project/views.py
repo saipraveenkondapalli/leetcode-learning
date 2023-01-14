@@ -121,7 +121,7 @@ def company(company_name):
 def problems():
     level = request.args.get('level')
     category = request.args.get('category')
-    print(f"level: {level}, category: {category}")
+    #print(f"level: {level}, category: {category}")
     if level == "All":
         level = None
     if level and category:
@@ -180,6 +180,17 @@ def search():
     words = request.args.get('search')
     prob = Problems.objects().search_text(words).order_by('$text_score')
     return render_template('table_generate.html', problems=prob, page=1)
+
+
+@app.route('/your', methods=['POST'])
+def handle_request():
+    data = request.get_json()
+    data = dict(data)
+    print(data)
+    page = 1
+    problems = Problems.objects().filter(**data).order_by('-total_companies').paginate(page=page, per_page=50)
+    return render_template('table_generate.html', problems=problems.items, page=page)
+
 
 
 """

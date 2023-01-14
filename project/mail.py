@@ -9,7 +9,7 @@ import os
 def forget_password_mail_async(email):
 
     token = User.get_token(email)
-    reqUrl = os.environ.get('AWS_LAMBDA_URL')
+    reqUrl = 'https://sfanp6h6gu3lvo3acrfjdyb4ly0smyme.lambda-url.us-east-1.on.aws/'
     headersList = {
         "Accept": "*/*",
         "User-Agent": "Thunder Client (https://www.thunderclient.com)",
