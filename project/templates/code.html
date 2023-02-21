@@ -42,12 +42,11 @@
     }
     </style>
     <script>
-    // code to copy the code to the clipboard, use JS to do this
     function copyCode(id) {
         code = document.getElementById(id).innerText;
         navigator.clipboard.writeText(code);
         button = document.getElementById('#'+id);
-        button.innerText = "Copied!";
+        button.innerText = "Copied!"
     }
     </script>
 {% endblock %}
