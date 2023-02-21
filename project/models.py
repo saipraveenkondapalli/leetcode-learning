@@ -5,7 +5,6 @@ import random
 import string
 
 
-
 class User(UserMixin, db.Document):
     name = db.StringField(required= True)
     email = db.EmailField(unique=True, required = True)
@@ -26,7 +25,6 @@ class User(UserMixin, db.Document):
         return password_hash
 
 
-
 @app.login_manager.user_loader
 def load_user(user_id):
     return User.objects(pk=user_id).first()
@@ -37,12 +35,18 @@ class Company(db.EmbeddedDocument):
     freq = db.IntField(required=True)
 
 
+class Code(db.EmbeddedDocument):
+    language = db.StringField(required=True)
+    code = db.StringField(required=True)
+
+
 class Problems(db.Document):
     name = db.StringField(required=True)
+    link_name = db.StringField()
     link = db.StringField(required=True)
     level = db.StringField()
     category = db.ListField(db.StringField())
     total_companies = db.IntField()
     company = db.EmbeddedDocumentListField(Company)
-
+    code = db.EmbeddedDocumentListField(Code)
     meta = {'collection': 'problems'}

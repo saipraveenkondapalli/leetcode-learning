@@ -1,16 +1,10 @@
-import time
-from flask import request, render_template, redirect, url_for, make_response, jsonify
-from project.models import User, Problems
-from project import app, oauth, bcrypt
-from mongoengine.errors import NotUniqueError as MongoNotUniqueError
-from flask_login import login_required, login_user, logout_user, current_user
-import boto3
-import random
-from bson.son import SON
+from flask import request, render_template, abort
+from project import app
+from project.models import Problems
 
 
 @app.route('/')
-def hello_world():  # put application's code here
+def hello_world():
     return render_template("index.html")
 
 
@@ -19,6 +13,19 @@ def privacy():
     return render_template("privacy.html")
 
 
+@app.errorhandler(410)
+def question_not_found(e):
+    return render_template('410.html')
+
+
+@app.route('/code')
+def code():
+    name = request.args.get('name')
+    problem = Problems.objects(name=name).first()
+    if not problem:
+        abort(410)
+
+    return render_template("code.html", problem=problem)
 
 
 """
@@ -108,20 +115,20 @@ def company(company_name):
         {'$project': {'name': 1, 'link': 1, 'level': 1, 'company': 1}}
     ]
 
-
     # Run the aggregation pipeline
     result = Problems.objects.aggregate(pipeline)
-
     return render_template('company_questions.html', name = company_name, problems=result)
 
-# ----------------------------------------------------------- END OF COMPANY LIST ----------------------------------------------------------------------------------
+
+# ----------------------------------------------------------- END OF COMPANY LIST --------------------------------------
+
 
 
 @app.route('/problems', methods = ['GET', 'POST'])
 def problems():
     level = request.args.get('level')
     category = request.args.get('category')
-    #print(f"level: {level}, category: {category}")
+    print(f"level: {level}, category: {category}")
     if level == "All":
         level = None
     if level and category:
@@ -186,29 +193,9 @@ def search():
 def handle_request():
     data = request.get_json()
     data = dict(data)
-    print(data)
     page = 1
     problems = Problems.objects().filter(**data).order_by('-total_companies').paginate(page=page, per_page=50)
     return render_template('table_generate.html', problems=problems.items, page=page)
 
 
 
-"""
-@app.route('/upload', methods = ['POST', 'GET'])
-def upload():
-    if request.method == 'POST':
-        file = request.files['file']
-        # generate a random file name using random module
-        
-        file.filename = str(random.randint(100000, 9999999999)) +'.'+ file.filename.split('.')[-1] # 1234567.jpg
-        s3 = boto3.resource('s3', aws_access_key_id='73234ac2e5a5a497e7249fc13ab802e4',
-                            aws_secret_access_key='e671453794d1b58b01d7c05bfa8f1345f28ad01d372b0685a6414b8c1a6acfc2',
-                            endpoint_url='https://4e3989f550197dead69bd70821c5fc3f.r2.cloudflarestorage.com')
-
-        bucket = s3.Bucket('leetcode-problems')
-        bucket.upload_fileobj(file, file.filename)
-
-        return "File uploaded Successfully"
-    return render_template('upload.html')
-    
-"""

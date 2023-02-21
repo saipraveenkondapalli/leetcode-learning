@@ -202,9 +202,9 @@
 <div class="row">
 
         <div class="col">
-            <h1 style="font-family: Raleway, sans-serif;text-align: center;">Companies</h1>
+            <h1 style="text-align: center;">Companies</h1>
             {% if current_user.is_authenticated %}
-            <h3 style="font-family: Raleway, sans-serif;text-align: left; margin-left: 20px"> Welcome {{ current_user.name}}</h3>
+            <h3 style="text-align: left; margin-left: 20px"> Welcome {{ current_user.name}}</h3>
             {% endif %}
         </div>
         <div class="row">
@@ -223,17 +223,17 @@
         <table class="table table-responsive">
             <thead>
                 <tr class="text-start">
-                    <th style="font-family: Raleway, sans-serif;width: 20px;">S.no</th>
-                    <th style="font-family: Raleway, sans-serif;width: 70px">Company</th>
-                    <th style="font-family: Raleway, sans-serif;width: 50px">Total</th>
+                    <th style="width: 20px;">S.no</th>
+                    <th style="width: 70px">Company</th>
+                    <th style="width: 50px">Total</th>
                 </tr>
             </thead>
-            <tbody style="font-family: Raleway, sans-serif;" id="table-body">
+            <tbody  id="table-body">
                 {% for company in company %}
-                <tr style="font-family: Raleway, sans-serif;">
-                    <td style="font-family: Raleway, sans-serif;width: 20px;">{{ loop.index}}</td>
-                    <td style="font-family: Raleway, sans-serif;"><a href ="/company/{{ company['_id'] }}">{{ company['_id'] }}</a></td>
-                    <td style="font-family: Raleway, sans-serif;">{{ company['count'] }}</td>
+                <tr >
+                    <td>{{ loop.index}}</td>
+                    <td ><a href ="/company/{{ company['_id'] }}">{{ company['_id'] }}</a></td>
+                    <td >{{ company['count'] }}</td>
                 </tr>
                {% endfor %}
 
@@ -289,6 +289,11 @@ function filterTable() {
   #filter-button:hover {
     background-color: #46a049;
   }
+
+  td
+    {
+      width: 20px;
+    }
 </style>
 
 {% endblock %}

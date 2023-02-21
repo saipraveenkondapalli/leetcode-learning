@@ -16,7 +16,7 @@
                 {% for problem in problems%}
                 <tr style="font-family: Raleway, sans-serif;">
                     <td style="font-family: Raleway, sans-serif;width: 20px;">{{ loop.index + (page-1)*50  }}</td>
-                    <td style="font-family: Raleway, sans-serif;"><a href ="{{ problem['link'] }}" target="_blank">{{ problem['name'] }}</a></td>
+                    <td style="font-family: Raleway, sans-serif;"><a href ="/code?name={{ problem['name'] }}" >{{ problem['name'] }}</a></td>
                     <td style="font-family: Raleway, sans-serif;width: 48px">{{ problem['level'] }}</td>
                     <td style="font-family: Raleway, sans-serif;">{{(problem['company'] | length) }}</td>
                 </tr>
