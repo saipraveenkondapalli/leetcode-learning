@@ -44,7 +44,7 @@
     <script>
     function copyCode(id) {
         code = document.getElementById(id).innerText;
-        //navigator.clipboard.writeText(code);
+        navigator.clipboard.writeText(code);
         button = document.getElementById('#'+id);
         button.innerText = "Copied!";
     }
