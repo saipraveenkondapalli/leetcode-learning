@@ -1,4 +1,4 @@
-from project import db,app, bcrypt, login_manager
+from project import db,app, bcrypt
 from flask_login import UserMixin
 from itsdangerous import URLSafeTimedSerializer as Serializer
 import random

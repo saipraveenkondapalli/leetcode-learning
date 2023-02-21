@@ -83,6 +83,7 @@ def chart_data():
     return jsonify({'company_name': company_name, 'company_count': company_count, "easy": easy, "medium": medium, "hard": hard, "total": total})
 """
 
+
 @app.route('/companies')
 def companies():
     pipeline = [
