@@ -1,5 +1,4 @@
 
-var query = document.getElementById('query');
 
 document.getElementById('query').addEventListener('input', function(event) {
     if (query.value.length === 0) {
@@ -155,4 +154,6 @@ if (category) {
 window.onpopstate = function(event) {
     // Get the current URL
     var currentUrl = new URL(window.location.href);
+    sendRequest();
 }
+

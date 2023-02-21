@@ -27,7 +27,7 @@
             <div class = "card-body" >
                 <h5 class = "card-title" > {{ sol.language }} </h5>
                 <pre><code class="language-python" id ="code{{ loop.index }}">{{ sol.code }}</code></pre>
-                <button class = "btn btn-primary" onclick='copyCode("code{{ loop.index }}")'>Copy Code</button>
+                <button class = "btn btn-primary" id =#{{ loop.index }}onclick='copyCode("code{{ loop.index }}")'>Copy Code</button>
             </div>
 
         </div>
@@ -46,7 +46,8 @@
     function copyCode(id) {
         code = document.getElementById(id).innerText;
         navigator.clipboard.writeText(code);
-
+        button = document.getElementById('#'+id);
+        button.innerText = "Copied!";
     }
     </script>
 {% endblock %}

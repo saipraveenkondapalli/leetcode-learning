@@ -28,6 +28,8 @@ def code():
     return render_template("code.html", problem=problem)
 
 
+
+
 """
 
 @app.route('/dashboard')
@@ -129,9 +131,11 @@ def company(company_name):
 def problems():
     level = request.args.get('level')
     category = request.args.get('category')
-    print(f"level: {level}, category: {category}")
+   # print(f"level: {level}, category: {category}")
     if level == "All":
         level = None
+    if category == "All":
+        category = None
     if level and category:
         problems = Problems.objects().filter(level = level, category__in=[category]).order_by('-total_companies').paginate(page=1,
                                                                                                             per_page=50)
