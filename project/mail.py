@@ -1,15 +1,14 @@
-from project import app
+import os
+import json
+import requests
 from flask import url_for
 from project.models import User
-import requests
-import json
-import os
 
 
 def forget_password_mail_async(email):
 
     token = User.get_token(email)
-    reqUrl = 'https://sfanp6h6gu3lvo3acrfjdyb4ly0smyme.lambda-url.us-east-1.on.aws/'
+    reqUrl = os.environ.get('AWS_LAMBDA_URL')
     headersList = {
         "Accept": "*/*",
         "User-Agent": "Thunder Client (https://www.thunderclient.com)",
@@ -21,6 +20,5 @@ def forget_password_mail_async(email):
     })
 
     response = requests.request("POST", reqUrl, data=payload, headers=headersList)
-
     return True
 
