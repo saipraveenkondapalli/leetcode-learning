@@ -7,7 +7,7 @@ from project import app
 def get_problem(problem):
     problem = Problems.objects(link_name=problem).first()
     if problem:
-        return (jsonify({'message': 'Problem found', 'problem':problem.to_json()}), 200)
+        return (jsonify({'message': 'Problem found', 'problem':problem}), 200)
     else:
         return (jsonify({'message': 'Problem not found'}), 404)
 
