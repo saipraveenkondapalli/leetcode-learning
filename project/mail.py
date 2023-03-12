@@ -22,3 +22,4 @@ def forget_password_mail_async(email):
     response = requests.request("POST", reqUrl, data=payload, headers=headersList)
     return True
 
+

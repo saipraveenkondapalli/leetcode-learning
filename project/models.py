@@ -4,7 +4,6 @@ from itsdangerous import URLSafeTimedSerializer as Serializer
 import random
 import string
 
-
 class User(UserMixin, db.Document):
     name = db.StringField(required= True)
     email = db.EmailField(unique=True, required = True)
@@ -32,7 +31,9 @@ def load_user(user_id):
 
 class Company(db.EmbeddedDocument):
     name = db.StringField(required=True)
-    freq = db.IntField(required=True)
+    alias = db.StringField()
+    freq = db.IntField()
+    percentage = db.StringField()
 
 
 class Code(db.EmbeddedDocument):
