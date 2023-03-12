@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+  "name": "LeetCode Extension",
+  "version": "1.0",
+  "description": "This extension fetches data from a Flask server and inserts it into a LeetCode problem page.",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://leetcode.com/problems/*"
+      ],
+      "js": ["content.js"]
+    }
+  ],
+  "permissions": ["activeTab"]
+}

@@ -4,11 +4,14 @@ from flask_mongoengine import MongoEngine
 from flask_login import LoginManager
 from authlib.integrations.flask_client import OAuth
 from flask_bcrypt import Bcrypt
+from flask_cors import CORS
 
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
+# -------------------------------------------- CORS Configuration -----------------------------------------------
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 # --------------------------------------------FLASK Bcrypt CONFIGURATION -----------------------------------------------
 
