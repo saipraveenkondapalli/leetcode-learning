@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "LeetCode Extension",
+  "version": "1.0",
+  "description": "Introducing our new Chrome Extension that helps you identify which companies have previously asked LeetCode questions. Our extension sources this information from open-source GitHub repositories and displays it directly in the LeetCode problem page's description.\n\nWith this information, you can focus your preparation on the most relevant and frequently asked coding questions, giving you a better chance of success in technical interviews.\n\nDon't waste your time preparing for questions that are unlikely to come up in your interviews. Download our Chrome Extension today and start preparing more effectively for your next technical interview!",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://leetcode.com/problems/*"
+      ],
+      "js": ["content.js"]
+    }
+  ],
+  "permissions": [
+    "activeTab"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+ "web_accessible_resources": [
+  {
+    "resources": ["content.js"],
+    "matches": ["https://leetcode.com/*"]
+  }
+]
+
+}
