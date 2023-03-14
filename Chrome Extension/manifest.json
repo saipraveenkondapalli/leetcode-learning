@@ -9,19 +9,22 @@
         "https://leetcode.com/problems/*"
       ],
       "js": ["content.js"]
+
     }
   ],
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "tabs"
   ],
   "host_permissions": [
     "<all_urls>"
   ],
  "web_accessible_resources": [
   {
-    "resources": ["content.js"],
+    "resources": ["content.js", "leetcode.js", "popup.html", "contents.js"],
     "matches": ["https://leetcode.com/*"]
   }
-]
 
+]
 }
+
